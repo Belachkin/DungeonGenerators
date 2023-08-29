@@ -9,10 +9,8 @@ namespace Assets._Scripts
 {
     public class SimpleRandomWalkMapGenerator : AbstractDungeonGenerator
     {
-               
-        [SerializeField] private int _iterations = 10;
-        public int WalkLength = 10;
-        public bool StartRandomlyEachIteration = true;
+
+        [SerializeField] private SimpleRandomWalkSO _randomWalkParameters;
 
         protected override void RunProcedualGeneration()
         {
@@ -26,13 +24,13 @@ namespace Assets._Scripts
             var currentPosition = _startPosition;
             HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
 
-            for (int i = 0; i < _iterations; i++)
+            for (int i = 0; i < _randomWalkParameters.Iterations; i++)
             {
-                var path = WalkDungeunGenerator.SimpleRandomWalk(currentPosition, WalkLength);
+                var path = WalkDungeunGenerator.SimpleRandomWalk(currentPosition, _randomWalkParameters.WalkLength);
 
                 floorPositions.UnionWith(path);
 
-                if(StartRandomlyEachIteration)
+                if(_randomWalkParameters.StartRandomlyEachInteration)
                 {
                     currentPosition = floorPositions.ElementAt(Random.Range(0, floorPositions.Count));
                 }
