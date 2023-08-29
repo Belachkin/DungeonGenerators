@@ -27,15 +27,18 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkMapGenerator
 
         HashSet<Vector2Int> roomPositions = CreateRooms(potentialRoomPositions);
 
+
         List<Vector2Int> deadEnds = FindAdllDeadEnds(floorPositions);
 
         CreateRoomsAtDeadEnd(deadEnds, roomPositions);
+
 
         floorPositions.UnionWith(roomPositions);
 
         _tilemapVisualizer.PaintFloorTiles(floorPositions);
         WallGenerator.CreateWalls(floorPositions, _tilemapVisualizer);
     }
+
 
     private void CreateRoomsAtDeadEnd(List<Vector2Int> deadEnds, HashSet<Vector2Int> roomFloor)
     {
@@ -72,6 +75,7 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkMapGenerator
         return deadEnds;
     }
 
+
     private void CreateCorridors(HashSet<Vector2Int> floorPositions, HashSet<Vector2Int> potentialRoomPositions)
     {
         var currentPositions = _startPosition;
@@ -92,7 +96,7 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkMapGenerator
         HashSet<Vector2Int> roomPositions = new HashSet<Vector2Int>();
         int roomToCreateCount = Mathf.RoundToInt(potentialRoomPositions.Count * _roomPercent);
 
-        //Guid.NewGuid() - Глобальный идентификатор по которому мы можем сортировать (https://guid.one/guid)
+        //Guid.NewGuid() - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (https://guid.one/guid)
         List<Vector2Int> roomsToCreate = potentialRoomPositions.OrderBy(x => Guid.NewGuid()).Take(roomToCreateCount).ToList();
 
         foreach (var roomPosition in roomsToCreate)
