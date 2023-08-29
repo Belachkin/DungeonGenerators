@@ -7,16 +7,14 @@ using Random = UnityEngine.Random;
 
 namespace Assets._Scripts
 {
-    public class SimpleRandomWalkMapGenerator : MonoBehaviour
+    public class SimpleRandomWalkMapGenerator : AbstractDungeonGenerator
     {
-        [SerializeField] private TilemapVisualizer _tilemapVisualizer;
-        [SerializeField] protected Vector2Int _startPosition = Vector2Int.zero;
+               
         [SerializeField] private int _iterations = 10;
-
         public int WalkLength = 10;
         public bool StartRandomlyEachIteration = true;
 
-        public void RunProcedualGeneration()
+        protected override void RunProcedualGeneration()
         {
             HashSet<Vector2Int> floorPositions = RunRandomWalk();
 
@@ -42,5 +40,7 @@ namespace Assets._Scripts
 
             return floorPositions;
         }
+
+        
     }
 }
