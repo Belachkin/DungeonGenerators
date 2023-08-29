@@ -17,7 +17,7 @@ public class TilemapVisualizer : MonoBehaviour
         PaintTiles(floorPositions, _floorTilemap, _floorTile);
     }
 
-    private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
+    public void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
     {
         foreach (var position in positions)
         {
@@ -25,7 +25,7 @@ public class TilemapVisualizer : MonoBehaviour
         }
     }
 
-    private void PaintSingleTile(Vector2Int position, Tilemap tilemap, TileBase tile)
+    public void PaintSingleTile(Vector2Int position, Tilemap tilemap, TileBase tile)
     {
         var tilePosition = tilemap.WorldToCell((Vector3Int)position);
 
