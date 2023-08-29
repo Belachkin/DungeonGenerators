@@ -15,8 +15,9 @@ namespace Assets._Scripts
         protected override void RunProcedualGeneration()
         {
             HashSet<Vector2Int> floorPositions = RunRandomWalk();
-
+            _tilemapVisualizer.Clear();
             _tilemapVisualizer.PaintFloorTiles(floorPositions);
+            WallGenerator.CreateWalls(floorPositions, _tilemapVisualizer);
         }
 
         protected HashSet<Vector2Int> RunRandomWalk()
