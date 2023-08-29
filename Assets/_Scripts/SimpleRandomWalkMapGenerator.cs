@@ -10,19 +10,19 @@ namespace Assets._Scripts
     public class SimpleRandomWalkMapGenerator : AbstractDungeonGenerator
     {
 
-        [SerializeField] private SimpleRandomWalkSO _randomWalkParameters;
+        [SerializeField] protected SimpleRandomWalkSO _randomWalkParameters;
 
         protected override void RunProcedualGeneration()
         {
-            HashSet<Vector2Int> floorPositions = RunRandomWalk(_randomWalkParameters);
+            HashSet<Vector2Int> floorPositions = RunRandomWalk(_randomWalkParameters, _startPosition);
             _tilemapVisualizer.Clear();
             _tilemapVisualizer.PaintFloorTiles(floorPositions);
             WallGenerator.CreateWalls(floorPositions, _tilemapVisualizer);
         }
 
-        protected HashSet<Vector2Int> RunRandomWalk(SimpleRandomWalkSO parameter)
+        protected HashSet<Vector2Int> RunRandomWalk(SimpleRandomWalkSO parameter, Vector2Int position)
         {
-            var currentPosition = _startPosition;
+            var currentPosition = position;
             HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
 
             for (int i = 0; i < parameter.Iterations; i++)
@@ -41,5 +41,7 @@ namespace Assets._Scripts
         }
 
         
+
+
     }
 }
